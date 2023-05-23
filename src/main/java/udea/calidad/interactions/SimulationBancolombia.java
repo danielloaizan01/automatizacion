@@ -16,10 +16,16 @@ public class SimulationBancolombia implements Interaction {
     private static final int MAX_VALUE = 500000000;
     private static final int MIN_MONTHS = 48;
     private static final int MAX_MONTHS = 84;
+    private Random random;
+
+    public SimulationBancolombia() {
+        random = new Random();
+    }
+
     @Override
     public <T extends Actor> void performAs(T actor) {
         actor.attemptsTo(Click.on(OPCION_SI));
-        
+
         int valorAleatorio = generarValorAleatorio(MIN_VALUE, MAX_VALUE);
         int plazoAleatorio = generarValorAleatorio(MIN_MONTHS, MAX_MONTHS);
 
@@ -33,11 +39,10 @@ public class SimulationBancolombia implements Interaction {
     }
 
     private int generarValorAleatorio(int min, int max) {
-        Random random = new Random();
         return random.nextInt((max - min) + 1) + min;
     }
 
-    public static SimulationBancolombia infoGo(){
+    public static SimulationBancolombia infoGo() {
         return Tasks.instrumented(SimulationBancolombia.class);
     }
 }
