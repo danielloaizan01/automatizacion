@@ -1,32 +1,37 @@
-name: SonarCloud Analysis
-
+name: SonarCloud
 on:
   push:
     branches:
-      - main  # Ajusta la rama principal según tu configuración
+      - main
   pull_request:
-    branches:
-      - main  # Ajusta la rama principal según tu configuración
-
+    types: [opened, synchronize, reopened]
 jobs:
-  sonarcloud:
-    name: SonarCloud
+  build:
+    name: Build and analyze
     runs-on: ubuntu-latest
-
     steps:
-      # Clonar el repositorio
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      # Configurar el entorno de Java (si es necesario)
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
       - name: Set up JDK 11
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           java-version: 11
-
-      # Ejecutar el análisis de SonarCloud
-      - name: SonarCloud Scan
-        uses: sonarsource/sonarcloud-github-action@master
+          distribution: 'zulu' # Alternative distribution options are available
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Gradle packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+      - name: Build and analyze
         env:
-          MY_TOKEN: ${{ secrets.MY_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: ./gradlew build sonarqube --info
