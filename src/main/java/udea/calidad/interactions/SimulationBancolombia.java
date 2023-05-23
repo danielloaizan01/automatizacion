@@ -37,7 +37,7 @@ public class SimulationBancolombia implements Interaction {
     private int generarValorAleatorio(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
-    //pequeños cambios
+    //pequeños cambios se necesitan revisar
     public static SimulationBancolombia infoGo() {
         return Tasks.instrumented(SimulationBancolombia.class);
     }
