@@ -21,7 +21,7 @@ public class NavigationInThe implements Task {
         actor.attemptsTo(BancolombiaNavigation.go());
     }
 
-    public static NavigationInThe Browser(PageObject page){
+    public static NavigationInThe browser(PageObject page){
         return Tasks.instrumented(NavigationInThe.class,page);
     }
 }

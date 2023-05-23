@@ -40,7 +40,7 @@ public class SimulationPageStepDefinition {
 
     @When("navego por la pagina en busca de opciones")
     public void  navegacionHomePageBancolombia(){
-        usuario.attemptsTo(NavigationInThe.Browser(new UsuarioPage()));
+        usuario.attemptsTo(NavigationInThe.browser(new UsuarioPage()));
     }
 
     @And("ingreso la informacion requerida para continuar")
