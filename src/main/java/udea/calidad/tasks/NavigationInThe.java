@@ -10,7 +10,7 @@ import udea.calidad.interactions.BancolombiaNavigation;
 public class NavigationInThe implements Task {
 
     private final PageObject page;
-
+	//PRUEBAS
     public NavigationInThe(PageObject page){
         this.page = page;
     }
