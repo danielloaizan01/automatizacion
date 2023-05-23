@@ -33,6 +33,7 @@ public class SimulationBancolombia implements Interaction {
         actor.attemptsTo(Click.on(BUTTON_SIMULAR));
     }
 
+    // La advertencia de seguridad puede ser ignorada en este caso
     private int generarValorAleatorio(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
