@@ -34,7 +34,7 @@ public class SimulationBancolombia implements Interaction {
     }
 
     // La advertencia de seguridad puede ser ignorada en este caso
-    private int generarValorAleatorio(int min, int max) {
+    privte int generarValorAleatorio(int min, int max) {
         return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
     //pequeños cambios se necesitan revisar
