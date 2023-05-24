@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import static udea.calidad.userinterfaces.UsuarioPage.*;
 import static udea.calidad.userinterfaces.UsuarioPage.BUTTON_SIMULAR;
-
+//prueba final
 public class SimulationBancolombia implements Interaction {
     private static final int MIN_VALUE = 1000000;
     private static final int MAX_VALUE = 500000000;
